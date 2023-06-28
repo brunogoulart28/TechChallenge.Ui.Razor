@@ -32,17 +32,17 @@ namespace TechChallenge.Ui.Razor.Pages
             // Enviar a requisição POST
             var resposta = await httpClient.PostAsync(url, conteudo);
 
-            if (resposta.IsSuccessStatusCode)
-            {
-                return RedirectToPage("/Index");
-            }
-            else
+            if (!resposta.IsSuccessStatusCode)
             {
                 // A requisição falhou, trate o erro de acordo com suas necessidades
                 // Você pode acessar a mensagem de erro através de resposta.ReasonPhrase
                 ModelState.AddModelError(string.Empty, "Erro ao chamar a API.");
                 return Page();
             }
+
+
+
+            return RedirectToPage("/Index");
         }
     }
 }
