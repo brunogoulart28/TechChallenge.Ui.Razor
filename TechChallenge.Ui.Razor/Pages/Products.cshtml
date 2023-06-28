@@ -4,7 +4,7 @@
 }
 <h1>Cadastrar Produto</h1>
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div>
         <label for="name">Nome:</label>
     </div>
@@ -23,5 +23,13 @@
     <div>
         <input type="text" id="price" name="Price" />
     </div>
+    <div>
+        <label for="imageInput">Imagem:</label>
+    </div>
+    <div>
+        <span>Selecione a imagem:</span>
+    </div>
+    <input type="file" name="FileInput" multiple accept="image/png, image/jpeg, image/gif" />
+    <br />
     <button type="submit">Salvar</button>
 </form>

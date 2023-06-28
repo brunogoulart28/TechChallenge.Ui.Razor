@@ -17,10 +17,13 @@ namespace TechChallenge.Ui.Razor.Pages
         [BindProperty]
         public decimal Price { get; set; }
 
+        [BindProperty]
+        public IFormFile FileInput { get; set; }
+
         public async Task<IActionResult> OnPostAsync()
         {
-            var url = "https://localhost:7111/api/v1/products"; // Substitua pela URL da sua API
-            var dados = new { name = Name, description = Description, price = Price }; // Substitua pelos dados que deseja enviar na requisição
+            var url = "https://localhost:7111/api/v1/products";
+            var dados = new { name = Name, description = Description, price = Price };
 
             // Converter os dados para JSON
             var json = JsonConvert.SerializeObject(dados);
@@ -42,10 +45,4 @@ namespace TechChallenge.Ui.Razor.Pages
             }
         }
     }
-}
-public class Product
-{
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public decimal Price { get; set; }
 }
