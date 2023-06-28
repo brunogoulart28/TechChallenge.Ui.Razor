@@ -1,0 +1,27 @@
+﻿@page
+@model TechChallenge.Ui.Razor.Pages.ProductsModel
+@{
+}
+<h1>Cadastrar Produto</h1>
+
+<form method="post">
+    <div>
+        <label for="name">Nome:</label>
+    </div>
+    <div>
+        <input type="text" id="name" name="Name" />
+    </div>
+    <div>
+        <label for="description">Descrição:</label>
+    </div>
+    <div>
+        <textarea id="description" name="Description"></textarea>
+    </div>
+    <div>
+        <label for="price">Preço:</label>
+    </div>
+    <div>
+        <input type="text" id="price" name="Price" />
+    </div>
+    <button type="submit">Salvar</button>
+</form>
