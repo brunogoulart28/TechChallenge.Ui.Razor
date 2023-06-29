@@ -4,32 +4,26 @@
 }
 <h1>Cadastrar Produto</h1>
 
-<form method="post" enctype="multipart/form-data">
-    <div>
-        <label for="name">Nome:</label>
-    </div>
-    <div>
-        <input type="text" id="name" name="Name" />
-    </div>
-    <div>
-        <label for="description">Descrição:</label>
-    </div>
-    <div>
-        <textarea id="description" name="Description"></textarea>
-    </div>
-    <div>
-        <label for="price">Preço:</label>
-    </div>
-    <div>
-        <input type="text" id="price" name="Price" />
-    </div>
-    <div>
-        <label for="imageInput">Imagem:</label>
-    </div>
-    <div>
-        <span>Selecione a imagem:</span>
-    </div>
-    <input type="file" name="FileInput" accept="image/png, image/jpeg, image/gif" />
-    <br />
-    <button type="submit">Salvar</button>
-</form>
+
+<div class="container">
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label">Nome:</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <div class ="mb-3">
+            <label for="description">Descrição:</label>
+            <input asp-for="Description" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label for="price">Preço:</label>
+            <input asp-for="Price" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label for="fileInput">Selecione a imagem:</label>
+        </div>
+        <input type="file" name="FileInput" accept="image/png, image/jpeg, image/gif" />
+        <h1></h1>
+        <input type="submit" value="Incluir" class="btn btn-primary" />
+    </form>
+</div>

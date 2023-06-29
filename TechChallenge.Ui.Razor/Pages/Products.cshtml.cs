@@ -22,6 +22,10 @@ namespace TechChallenge.Ui.Razor.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
+            var stream = new MemoryStream();
+            FileInput.CopyTo(stream);
+            byte[] bytes2 = stream.ToArray();
+
             var url = "https://localhost:7111/api/v1/products";
             var dados = new { name = Name, description = Description, price = Price };
 
@@ -40,9 +44,24 @@ namespace TechChallenge.Ui.Razor.Pages
                 return Page();
             }
 
+            var ultImputImage = "https://localhost:7111/api/v1/images/upload";
+
+            var image = new { ProductId = "6a82fa49-c820-49a5-8055-fc8a66b78ab1", File = FileInput.OpenReadStream() };
+            var jsonImage = JsonConvert.SerializeObject(image);
+            var conteudoImage = new StringContent(jsonImage, Encoding.UTF8, "application/json");
+
+            var respostaImage = await httpClient.PostAsync(ultImputImage, conteudoImage);
 
 
             return RedirectToPage("/Index");
+        }
+        private byte[] SerializeFile(IFormFile arquivo)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                arquivo.CopyTo(memoryStream);
+                return memoryStream.ToArray();
+            }
         }
     }
 }
