@@ -34,8 +34,14 @@ namespace TechChallenge.Ui.Razor.Pages
 
             if (!resposta.IsSuccessStatusCode)
             {
-                ModelState.AddModelError(string.Empty, "Erro ao chamar a API.");
-                return Page();
+                TempData["ErroMensagem"] = resposta.RequestMessage.ToString();
+                return Page() ;
+            }
+
+            if (FileInput == null)
+            {
+                TempData["SucessoMensagem"] = "Gravação realizada com sucesso!";
+                return RedirectToPage("/Index");
             }
 
             var apiUrl = "https://localhost:7111/api/v1/images/upload";
@@ -51,11 +57,12 @@ namespace TechChallenge.Ui.Razor.Pages
                         // Trate a resposta da chamada REST como desejado
                         if (response.IsSuccessStatusCode)
                         {
+                            TempData["SucessoMensagem"] = "Gravação realizada com sucesso!";
                             return RedirectToPage("/Index");
                         }
                         else
                         {
-                            ModelState.AddModelError(string.Empty, "Erro ao chamar a API.");
+                            TempData["ErroMensagem"] = response.RequestMessage.ToString();
                             return Page();
                         }
                     }
