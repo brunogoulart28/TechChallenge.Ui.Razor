@@ -6,12 +6,12 @@
 
 
 <div class="container">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label">Nome:</label>
             <input asp-for="Name" class="form-control" />
         </div>
-        <div class ="mb-3">
+        <div class="mb-3">
             <label for="description">Descrição:</label>
             <input asp-for="Description" class="form-control" />
         </div>
@@ -19,11 +19,7 @@
             <label for="price">Preço:</label>
             <input asp-for="Price" class="form-control" />
         </div>
-        <div class="mb-3">
-            <label for="fileInput">Selecione a imagem:</label>
-        </div>
-        <input type="file" name="FileInput" accept="image/png, image/jpeg, image/gif" />
-        <h1></h1>
-        <input type="submit" value="Incluir" class="btn btn-primary" />
+        <input asp-for="FileInput" />
+        <input type="submit" class="btn btn-primary" />
     </form>
 </div>
