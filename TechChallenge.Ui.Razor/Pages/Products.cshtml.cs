@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Configuration;
 using System.Net.Http;
 using System.Text;
+using TechChallenge.Ui.Razor.Models;
 
 namespace TechChallenge.Ui.Razor.Pages
 {
@@ -46,6 +47,8 @@ namespace TechChallenge.Ui.Razor.Pages
                 TempData["ErroMensagem"] = resposta.RequestMessage.ToString();
                 return Page() ;
             }
+            var responseContent = await resposta.Content.ReadAsStringAsync();
+            var produtoCadastrado = JsonConvert.DeserializeObject<Products>(responseContent);
 
             if (FileInput == null)
             {
@@ -58,7 +61,7 @@ namespace TechChallenge.Ui.Razor.Pages
             {
                 using (var fileStream = FileInput.OpenReadStream())
                 {
-                    form.Add(new StringContent("6a82fa49-c820-49a5-8055-fc8a66b78ab1"), "ProductId");
+                    form.Add(new StringContent(produtoCadastrado.Id), "ProductId");
                     form.Add(new StreamContent(fileStream), "file", FileInput.FileName);
 
                     using (var response = await httpClient.PostAsync(UrlImage, form))
